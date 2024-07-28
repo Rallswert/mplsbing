@@ -17,66 +17,79 @@
         <button id="next-button" onclick="nextQuestion()" class="hidden">Next</button>
     </div>
     <div id="congratulations" class="hidden">
-        <h1>Congratulations!</h1>
-        <p>You have completed all the questions!</p>
+        <h1>Outstanding!</h1>
+        <p>You really showed your skills there!</p>
+        <p>Kasih paham cuy 👊🏻</p>
         <button onclick="returnToMenu()">Return to Menu</button>
         <button onclick="nextLevel()">Next Level</button>
     </div>
     <script>
         const questions = [
-    {
-        "question": "Choose the correct form of the verb: She ____ (to be) cooking dinner now.",
-        "options": ["was", "am", "are", "is"],
-        "answer": "is"
-    },
-    {
-        "question": "Fill in the blank: They ______ (to be) playing soccer in the park.",
-        "options": ["is", "am", "are", "were"],
-        "answer": "are"
-    },
-    {
-        "question": "What is the continuous tense of 'He reads a book'?",
-        "options": ["He is read a book.", "He are reading a book.", "He is reading a book.", "He reading a book."],
-        "answer": "He is reading a book."
-    },
-    {
-        "question": "Correct the sentence: We is going to the market.",
-        "options": ["We are going to the market.", "We am going to the market.", "We be going to the market.", "We is going to the market."],
-        "answer": "We are going to the market."
-    },
-    {
-        "question": "Fill in the blank with the correct form of 'to be': I ______ (to be) watching TV right now.",
-        "options": ["were", "is", "am", "was"],
-        "answer": "am"
-    },
-    {
-        "question": "Choose the correct sentence.",
-        "options": ["They is running in the park.", "They are running in the park.", "They am running in the park.", "They be running in the park."],
-        "answer": "They are running in the park."
-    },
-    {
-        "question": "Fill in the blank: You ______ (to be) doing your homework now.",
-        "options": ["is", "am", "are", "was"],
-        "answer": "are"
-    },
-    {
-        "question": "What is the continuous tense of 'We visit our grandparents'?",
-        "options": ["We is visit our grandparents.", "We are visiting our grandparents.", "We is visiting our grandparents.", "We visiting our grandparents."],
-        "answer": "We are visiting our grandparents."
-    },
-    {
-        "question": "Complete the sentence with the correct continuous tense: At this time yesterday, they ______ (to be) traveling to New York.",
-        "options": ["was", "were", "is", "are"],
-        "answer": "were"
-    },
-    {
-        "question": "Correct the sentence: She am taking a shower.",
-        "options": ["She are taking a shower.", "She is taking a shower.", "She was taking a shower.", "She be taking a shower."],
-        "answer": "She is taking a shower."
-    }
+            {
+                "question": "Choose the correct form of the verb: She ____ (to be) cooking dinner now.",
+                "options": ["was", "am", "are", "is"],
+                "answer": "is"
+            },
+            {
+                "question": "Fill in the blank: They ______ (to be) playing soccer in the park.",
+                "options": ["is", "am", "are", "were"],
+                "answer": "are"
+            },
+            {
+                "question": "What is the continuous tense of 'He reads a book'?",
+                "options": ["He is read a book.", "He are reading a book.", "He is reading a book.", "He reading a book."],
+                "answer": "He is reading a book."
+            },
+            {
+                "question": "Correct the sentence: We is going to the market.",
+                "options": ["We are going to the market.", "We am going to the market.", "We be going to the market.", "We is going to the market."],
+                "answer": "We are going to the market."
+            },
+            {
+                "question": "Fill in the blank with the correct form of 'to be': I ______ (to be) watching TV right now.",
+                "options": ["were", "is", "am", "was"],
+                "answer": "am"
+            },
+            {
+                "question": "Choose the correct sentence.",
+                "options": ["They is running in the park.", "They are running in the park.", "They am running in the park.", "They be running in the park."],
+                "answer": "They are running in the park."
+            },
+            {
+                "question": "Fill in the blank: You ______ (to be) doing your homework now.",
+                "options": ["is", "am", "are", "was"],
+                "answer": "are"
+            },
+            {
+                "question": "What is the continuous tense of 'We visit our grandparents'?",
+                "options": ["We is visit our grandparents.", "We are visiting our grandparents.", "We is visiting our grandparents.", "We visiting our grandparents."],
+                "answer": "We are visiting our grandparents."
+            },
+            {
+                "question": "Complete the sentence with the correct continuous tense: At this time yesterday, they ______ (to be) traveling to New York.",
+                "options": ["was", "were", "is", "are"],
+                "answer": "were"
+            },
+            {
+                "question": "Correct the sentence: She am taking a shower.",
+                "options": ["She are taking a shower.", "She is taking a shower.", "She was taking a shower.", "She be taking a shower."],
+                "answer": "She is taking a shower."
+            }
         ];
 
         let currentQuestionIndex = 0;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function shuffleQuestionsAndOptions() {
+            shuffle(questions);
+            questions.forEach(question => shuffle(question.options));
+        }
 
         function loadQuestion() {
             const question = questions[currentQuestionIndex];
@@ -123,7 +136,10 @@
             window.location.href = 'insane.html'; // Sesuaikan dengan URL halaman level berikutnya
         }
 
-        window.onload = loadQuestion;
+        window.onload = () => {
+            shuffleQuestionsAndOptions();
+            loadQuestion();
+        };
     </script>
 </body>
 </html>
