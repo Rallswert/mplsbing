@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Appreciation</title>
+    <link rel="stylesheet" href="styles_mvp.css">
+    <link rel="icon" href="crown.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="appreciation-card" class="card">
+            <h1 class="title">Which team is the match MVP?</h1>
+            <div class="form">
+                <input type="text" id="team-name" class="input" placeholder="Team name">
+                <span class="input-border"></span>
+            </div>
+            <h1 class="title">What is the name of our legend?</h1>
+            <div class="form">
+                <input type="text" id="legend-name" class="input" placeholder="Legend's name">
+                <span class="input-border"></span>
+            </div>
+            <button onclick="submitAppreciation()">Let's give them the best Appreciation🔥</button>
+        </div>
+        <div id="result-card" class="card result-card hidden">
+            <img src="crownimg.png" alt="Crown" class="crown">
+            <h1 class="text"><span id="team-result" class="highlight"></span>, your team is on a high peak don't forget to extend your hand to other climbers</h1>
+            <h1 class="text">And you <span id="legend-result" class="highlight"></span>, you should be able to be an example for others</h1>
+            <p></p>
+            <button onclick="returnToMenu()">Back to our home</button>
+        </div>
+    </div>
+    <script>
+        function submitAppreciation() {
+            const teamName = document.getElementById('team-name').value;
+            const legendName = document.getElementById('legend-name').value;
+
+            if (teamName && legendName) {
+                document.getElementById('team-result').textContent = teamName;
+                document.getElementById('legend-result').textContent = legendName;
+
+                document.getElementById('appreciation-card').classList.add('hidden');
+                document.getElementById('result-card').classList.remove('hidden');
+            } else {
+                alert('Please enter both the team name and the legend\'s name');
+            }
+        }
+
+        function returnToMenu() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
