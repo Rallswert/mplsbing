@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Level</title>
+    <link rel="stylesheet" href="styles_medium.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question-container">
+            <p id="question-text"></p>
+            <ul id="options-list"></ul>
+        </div>
+        <button id="reveal-button" onclick="revealAnswer()">Reveal</button>
+        <button id="next-button" onclick="nextQuestion()" class="hidden">Next</button>
+    </div>
+    <div id="congratulations" class="hidden">
+        <h1>Congratulations!</h1>
+        <p>You have completed all the questions!</p>
+        <button onclick="returnToMenu()">Return to Menu</button>
+        <button onclick="nextLevel()">Next Level</button>
+    </div>
+    <script>
+        const questions = [
+            {
+                "question": "Choose the correct form of 'to be': I ___ a student.",
+                "options": ["am", "is", "are"],
+                "answer": "am"
+            },
+            // Tambahkan 9 soal lagi di sini
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            const optionsList = document.getElementById('options-list');
+            optionsList.innerHTML = '';
+            question.options.forEach(option => {
+                const li = document.createElement('li');
+                li.textContent = option;
+                optionsList.appendChild(li);
+            });
+            document.getElementById('reveal-button').classList.remove('hidden');
+            document.getElementById('next-button').classList.add('hidden');
+        }
+
+        function revealAnswer() {
+            const question = questions[currentQuestionIndex];
+            const optionsList = document.getElementById('options-list');
+            optionsList.querySelectorAll('li').forEach(li => {
+                if (li.textContent === question.answer) {
+                    li.style.backgroundColor = '#FEFFD2';
+                    li.style.color = '#FF7D29';
+                }
+            });
+            document.getElementById('reveal-button').classList.add('hidden');
+            document.getElementById('next-button').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('congratulations').classList.remove('hidden');
+            }
+        }
+
+        function returnToMenu() {
+            window.location.href = 'index.html'; // Sesuaikan dengan URL halaman menu utama
+        }
+
+        function nextLevel() {
+            window.location.href = 'hard.html'; // Sesuaikan dengan URL halaman level berikutnya
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

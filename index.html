@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="main-menu">
+        <h1>Quiz</h1>
+        <h2>Learn "To Be" and Continuous Tense</h2>
+        <button id="start-button">Mulai</button>
+    </div>
+
+    <div id="notification-container" class="hidden">
+        <h2>Ikuti instruksi guru, siapkan kertas dan pulpen untuk mencatat jawaban dan menuliskan poin.</h2>
+        <p>Poin yang diperoleh sesuai level:</p>
+        <p><span style="color: green;">Level easy</span> <span style="color: darkseagreen;">+5 Poin</span></p>
+        <p><span style="color: orange;">Level medium</span> <span style="color: darkorange;">+10 Poin</span></p>
+        <p><span style="color: red;">Level hard</span> <span style="color: darkred;">+15 Poin</span></p>
+        <p><span style="color: purple;">Level insane</span> <span style="color: black;">+20 Poin</span></p>
+        <button id="next-button">Selanjutnya</button>
+    </div>
+    
+
+    <div id="mode-menu" class="hidden">
+        <h2>Pilih Mode</h2>
+        <button id="easy-button" class="mode-button" data-mode="easy">Easy</button>
+        <button id="medium-button" class="mode-button" data-mode="medium">Medium</button>
+        <button id="hard-button" class="mode-button" data-mode="hard">Hard</button>
+        <button id="insane-button" class="mode-button" data-mode="insane">Insane</button>
+    </div>
+
+    <div class="rating">
+        <input type="radio" id="star-1" name="star-radio" value="star-1">
+        <label for="star-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path pathLength="360" d="M12 2c-.43 0-.83.28-.98.68L8.9 9H2c-.43 0-.83.28-.98.68-.14.4.02.85.36 1.1l5.58 4.07-2.12 6.5c-.13.42.01.88.35 1.14.34.27.81.29 1.17.05L12 18.23l5.64 4.3c.36.24.83.22 1.17-.05.34-.26.48-.72.35-1.14l-2.12-6.5 5.58-4.07c.34-.25.5-.7.36-1.1-.14-.4-.54-.68-.98-.68h-6.9L12.98 2.68C12.83 2.28 12.43 2 12 2z"></path>
+            </svg>
+        </label>
+        <input type="radio" id="star-2" name="star-radio" value="star-2">
+        <label for="star-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path pathLength="360" d="M12 2c-.43 0-.83.28-.98.68L8.9 9H2c-.43 0-.83.28-.98.68-.14.4.02.85.36 1.1l5.58 4.07-2.12 6.5c-.13.42.01.88.35 1.14.34.27.81.29 1.17.05L12 18.23l5.64 4.3c.36.24.83.22 1.17-.05.34-.26.48-.72.35-1.14l-2.12-6.5 5.58-4.07c.34-.25.5-.7.36-1.1-.14-.4-.54-.68-.98-.68h-6.9L12.98 2.68C12.83 2.28 12.43 2 12 2z"></path>
+            </svg>
+        </label>
+        <input type="radio" id="star-3" name="star-radio" value="star-3">
+        <label for="star-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path pathLength="360" d="M12 2c-.43 0-.83.28-.98.68L8.9 9H2c-.43 0-.83.28-.98.68-.14.4.02.85.36 1.1l5.58 4.07-2.12 6.5c-.13.42.01.88.35 1.14.34.27.81.29 1.17.05L12 18.23l5.64 4.3c.36.24.83.22 1.17-.05.34-.26.48-.72.35-1.14l-2.12-6.5 5.58-4.07c.34-.25.5-.7.36-1.1-.14-.4-.54-.68-.98-.68h-6.9L12.98 2.68C12.83 2.28 12.43 2 12 2z"></path>
+            </svg>
+        </label>
+        <input type="radio" id="star-4" name="star-radio" value="star-4">
+        <label for="star-4">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path pathLength="360" d="M12 2c-.43 0-.83.28-.98.68L8.9 9H2c-.43 0-.83.28-.98.68-.14.4.02.85.36 1.1l5.58 4.07-2.12 6.5c-.13.42.01.88.35 1.14.34.27.81.29 1.17.05L12 18.23l5.64 4.3c.36.24.83.22 1.17-.05.34-.26.48-.72.35-1.14l-2.12-6.5 5.58-4.07c.34-.25.5-.7.36-1.1-.14-.4-.54-.68-.98-.68h-6.9L12.98 2.68C12.83 2.28 12.43 2 12 2z"></path>
+            </svg>
+        </label>
+        <input type="radio" id="star-5" name="star-radio" value="star-5">
+        <label for="star-5">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path pathLength="360" d="M12 2c-.43 0-.83.28-.98.68L8.9 9H2c-.43 0-.83.28-.98.68-.14.4.02.85.36 1.1l5.58 4.07-2.12 6.5c-.13.42.01.88.35 1.14.34.27.81.29 1.17.05L12 18.23l5.64 4.3c.36.24.83.22 1.17-.05.34-.26.48-.72.35-1.14l-2.12-6.5 5.58-4.07c.34-.25.5-.7.36-1.1-.14-.4-.54-.68-.98-.68h-6.9L12.98 2.68C12.83 2.28 12.43 2 12 2z"></path>
+            </svg>
+        </label>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

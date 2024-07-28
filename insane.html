@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Level</title>
+    <link rel="stylesheet" href="styles_insane.css">
+</head>
+<body>
+    <div id="quiz-container">
+        <div id="question-container">
+            <p id="question-text"></p>
+            <ul id="options-list"></ul>
+        </div>
+        <button id="reveal-button" onclick="revealAnswer()">Reveal</button>
+        <button id="next-button" onclick="nextQuestion()" class="hidden">Next</button>
+    </div>
+    <div id="congratulations" class="hidden">
+        <h1>Congratulations!</h1>
+        <p>You have completed all the questions!</p>
+        <button onclick="returnToMenu()">Return to Menu</button>
+    </div>
+    <script>
+        const questions = [
+    {
+        "question": "Choose the correct form of 'to be': Despite the challenging circumstances, her team ___ making significant progress.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Complete the sentence: While Dr. Johnson ___ usually very optimistic, today she is feeling slightly overwhelmed.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Rearrange the words to form a correct sentence: are / currently / developing / a new type of solar cell / The team / that / promising / is / to be / more efficient.",
+        "options": [
+            "The team is currently developing a new type of solar cell that is promising to be more efficient.",
+            "The team developing is currently a new type of solar cell that promising to be is more efficient.",
+            "Promising to be more efficient, the team currently is developing a new type of solar cell."
+        ],
+        "answer": "The team is currently developing a new type of solar cell that is promising to be more efficient."
+    },
+    {
+        "question": "Fill in the blank with the correct form of 'to be': The deadline for their project ___ approaching rapidly.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Choose the correct form of 'to be': She ___ giving a presentation to potential investors.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Complete the sentence: Her colleagues ___ brainstorming ideas for the presentation.",
+        "options": ["is", "are", "am"],
+        "answer": "are"
+    },
+    {
+        "question": "Rearrange the words to form a correct sentence: steadily / the team / Despite / setbacks, / their prototype / is / improving / initial.",
+        "options": [
+            "Despite the initial setbacks, the team is steadily improving their prototype.",
+            "The team is steadily improving their prototype despite initial setbacks.",
+            "Improving the team is steadily their prototype despite initial setbacks."
+        ],
+        "answer": "Despite the initial setbacks, the team is steadily improving their prototype."
+    },
+    {
+        "question": "Fill in the blank with the correct form of 'to be': Dr. Johnson ___ attending a webinar on the latest trends in renewable energy.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Choose the correct form of 'to be': She ___ continuously seeking ways to enhance her knowledge.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    },
+    {
+        "question": "Complete the sentence: By the end of the day, she ___ exhausted but satisfied with the progress they have made.",
+        "options": ["is", "are", "am"],
+        "answer": "is"
+    }
+];
+
+        let currentQuestionIndex = 0;
+
+        function loadQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.question;
+            const optionsList = document.getElementById('options-list');
+            optionsList.innerHTML = '';
+            question.options.forEach(option => {
+                const li = document.createElement('li');
+                li.textContent = option;
+                optionsList.appendChild(li);
+            });
+            document.getElementById('reveal-button').classList.remove('hidden');
+            document.getElementById('next-button').classList.add('hidden');
+        }
+
+        function revealAnswer() {
+            const question = questions[currentQuestionIndex];
+            const optionsList = document.getElementById('options-list');
+            optionsList.querySelectorAll('li').forEach(li => {
+                if (li.textContent === question.answer) {
+                    li.style.backgroundColor = '#C8ACD6';
+                    li.style.color = '#17153B';
+                }
+            });
+            document.getElementById('reveal-button').classList.add('hidden');
+            document.getElementById('next-button').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById('quiz-container').classList.add('hidden');
+                document.getElementById('congratulations').classList.remove('hidden');
+            }
+        }
+
+        function returnToMenu() {
+            window.location.href = 'index.html'; // Sesuaikan dengan URL halaman menu utama
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>
